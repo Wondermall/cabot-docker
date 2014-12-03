@@ -71,10 +71,10 @@ ENV TWILIO_OUTGOING_NUMBER +14155551234
 # Used for pointing links back in alerts etc.
 ENV WWW_HTTP_HOST cabot.example.com
 ENV WWW_SCHEME http
-CMD ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
+RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
 COPY env_vars.sh /cabot/
 COPY cabot-entry-point.sh /cabot/
 
-ENTRYPOINT ["/cabot/cabot-entry-point.sh"]
+CMD "/cabot/cabot-entry-point.sh"
 
