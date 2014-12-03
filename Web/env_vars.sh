@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export DATABASE_URL="postgres://docker:docker@$DATABASE_POSTGRE_HOST:5432/docker"
 export CELERY_BROKER_URL="redis://$CELERY_BROKER_REDIS_HOST:6379/1"
 export SES_HOST="$MAIL_EXIM_HOST"

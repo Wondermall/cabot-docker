@@ -15,10 +15,11 @@ RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 
 # Deploy cabot
-RUN git clone https://github.com/arachnys/cabot.git /cabot
+RUN git clone https://github.com/Labgoo/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
+ADD migrate.sh /cabot/
 
 # Install dependencies
 RUN pip install -e /cabot/
@@ -59,7 +60,7 @@ ENV JENKINS_PASS password
 # SMTP settings
 ENV SES_HOST email-smtp.us-east-1.amazonaws.com
 ENV SES_USER username
-ENV SES_PASS password
+ENV SES_PASS password/
 ENV SES_PORT 465
 
 # Twilio integration for SMS and telephone alerts
@@ -70,9 +71,10 @@ ENV TWILIO_OUTGOING_NUMBER +14155551234
 # Used for pointing links back in alerts etc.
 ENV WWW_HTTP_HOST cabot.example.com
 ENV WWW_SCHEME http
+CMD ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
-ADD env_vars /cabot/
+COPY env_vars.sh /cabot/
+COPY cabot-entry-point.sh /cabot/
 
-# Run cabot
-WORKDIR /cabot/
-CMD . /cabot/env_vars && /cabot/run.sh
+ENTRYPOINT ["/cabot/cabot-entry-point.sh"]
+
