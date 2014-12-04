@@ -75,6 +75,7 @@ RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
 COPY cabot-entry-point.sh /cabot/
 
-CMD . /cabot/cabot-entry-point.sh &
+WORKDIR /cabot/
+CMD . /cabot/migrate.sh && /cabot/run.sh
 
 

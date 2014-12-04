@@ -1,7 +1,7 @@
 name: cabot
 
 ships:
-  vm1: {ip: "",docker_port: 4243}
+  vm1: {ip: __FIX_ME__ ,docker_port: 4243}
 services:
   cabot_web:
     image: romankor/cabot:latest
@@ -9,9 +9,8 @@ services:
     instances:
       cabot:
         ship: vm1
-        ports: {backend: 5000, web: 8000}
+        ports: {backend: 5000, web: 80}
         env:
-
           HIPCHAT_ALERT_ROOM: __FIX_ME__
           HIPCHAT_API_KEY: __FIX_ME__
   database:
