@@ -1,17 +1,19 @@
 name: cabot
 
 ships:
-  vm1: {ip: ""}
+  vm1: {ip: "",docker_port: 4243}
 services:
   cabot_web:
-    image: romankor/cabot
+    image: romankor/cabot:latest
     requires: [database, celery_broker, mail]
     instances:
       cabot:
         ship: vm1
-        ports: {backend: 5000, web: 80}
+        ports: {backend: 5000, web: 8000}
         env:
-         
+
+          HIPCHAT_ALERT_ROOM: __FIX_ME__
+          HIPCHAT_API_KEY: __FIX_ME__
   database:
     image: orchardup/postgresql
     instances:
