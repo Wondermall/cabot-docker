@@ -73,8 +73,6 @@ ENV WWW_HTTP_HOST cabot.example.com
 ENV WWW_SCHEME http
 RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
-COPY cabot-entry-point.sh /cabot/
-
 WORKDIR /cabot/
 CMD . /cabot/migrate.sh && /cabot/run.sh
 
