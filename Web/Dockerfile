@@ -60,7 +60,7 @@ ENV JENKINS_PASS password
 # SMTP settings
 ENV SES_HOST email-smtp.us-east-1.amazonaws.com
 ENV SES_USER username
-ENV SES_PASS password/
+ENV SES_PASS password
 ENV SES_PORT 465
 
 # Twilio integration for SMS and telephone alerts
