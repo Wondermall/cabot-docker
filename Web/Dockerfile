@@ -76,5 +76,6 @@ RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 COPY env_vars.sh /cabot/
 COPY cabot-entry-point.sh /cabot/
 
-CMD "/cabot/cabot-entry-point.sh"
+CMD . /cabot/cabot-entry-point.sh &
+
 
