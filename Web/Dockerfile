@@ -15,7 +15,7 @@ RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 
 # Deploy cabot
-RUN git clone https://github.com/Labgoo/cabot.git /cabot
+RUN git clone https://github.com/arachnys/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
