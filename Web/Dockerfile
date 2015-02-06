@@ -15,7 +15,7 @@ RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 
 # Deploy cabot
-RUN git clone https://github.com/arachnys/cabot.git /cabot
+RUN git clone https://github.com/Labgoo/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
@@ -60,7 +60,7 @@ ENV JENKINS_PASS password
 # SMTP settings
 ENV SES_HOST email-smtp.us-east-1.amazonaws.com
 ENV SES_USER username
-ENV SES_PASS password
+ENV SES_PASS password/
 ENV SES_PORT 465
 
 # Twilio integration for SMS and telephone alerts
