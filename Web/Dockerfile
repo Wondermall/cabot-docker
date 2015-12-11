@@ -5,17 +5,24 @@
 # VERSION 1.0
 
 FROM ubuntu:14.04
-MAINTAINER Alexander Kushnarev <avkushnarev@gmail.com>
+MAINTAINER Roman Kournjaev <kournjaev@gmail.com>
 
 # Prepare
 RUN apt-get update
-RUN apt-get install -y build-essential nodejs libpq-dev python-dev npm nginx git curl
+RUN apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+RUN apt-get update
+RUN apt-get install -y build-essential
+RUN apt-get install -y vim  nodejs libpq-dev python-dev libsasl2-dev libldap2-dev npm nginx git curl --fix-missing
 
 RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 
+RUN pip install twilio 
+RUN pip install git+git://github.com/wondermall/cabot-alert-slack
+
 # Deploy cabot
-RUN git clone https://github.com/Labgoo/cabot.git /cabot
+RUN git clone https://github.com/arachnys/cabot /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
