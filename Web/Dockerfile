@@ -23,6 +23,7 @@ ADD migrate.sh /cabot/
 
 # Install dependencies
 RUN pip install -e /cabot/
+RUN pip install git+git://github.com/Wondermall/cabot-alert-slack
 RUN npm install --no-color -g coffee-script less@1.3 --registry http://registry.npmjs.org/
 
 # Set env var
