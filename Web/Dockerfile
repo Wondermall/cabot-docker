@@ -15,7 +15,7 @@ RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 
 # Deploy cabot
-RUN git clone https://github.com/Labgoo/cabot.git /cabot
+RUN git clonehttps://github.com/arachnys/cabot.git /cabot
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
@@ -23,6 +23,7 @@ ADD migrate.sh /cabot/
 
 # Install dependencies
 RUN pip install -e /cabot/
+RUN pip install git+git://github.com/Wondermall/cabot-alert-slack
 RUN npm install --no-color -g coffee-script less@1.3 --registry http://registry.npmjs.org/
 
 # Set env var
