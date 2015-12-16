@@ -4,18 +4,20 @@
 #
 # VERSION 1.0
 
-FROM ubuntu:14.04
-MAINTAINER Alexander Kushnarev <avkushnarev@gmail.com>
+FROM ubuntu:15.10
+MAINTAINER Roman Kournjaev
 
 # Prepare
 RUN apt-get update
-RUN apt-get install -y build-essential nodejs libpq-dev python-dev npm nginx git curl
+RUN apt-get install -y build-essential nodejs python-dev npm nginx git curl vim
+RUN apt-get install -y libpq-dev libsasl2-dev python-dev libldap2-dev libssl-dev
 
 RUN curl -OL https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 
 # Deploy cabot
-RUN git clonehttps://github.com/arachnys/cabot.git /cabot
+RUN git clone https://github.com/Wondermall/cabot.git /cabot
+
 ADD fixture.json /cabot/
 ADD run.sh /cabot/
 ADD nginx.conf /etc/nginx/nginx.conf
@@ -37,12 +39,12 @@ ENV LOG_FILE /var/log/cabot
 ENV PORT 5000
 ENV ADMIN_EMAIL you@example.com
 ENV CABOT_FROM_EMAIL noreply@example.com
-ENV DEBUG t
 
 # URL of calendar to synchronise rota with
 ENV CALENDAR_ICAL_URL http://www.google.com/calendar/ical/example.ics
 
-ENV DJANGO_SECRET_KEY 2FL6ORhHwr5eX34pP9mMugnIOd3jzVuT45f7w430Mt5PnEwbcJgma0q8zUXNZ68A
+ENV DJANGO_SECRET_KEY
+2FL6ORhHwr5eX34pP9mMugnIOd3jzVuT45f7w430Mt5PnEwbcJgma0q8zUXNZ68A
 
 # Hostname of your Graphite server instance
 ENV GRAPHITE_API http://graphite.example.com/
@@ -76,5 +78,3 @@ RUN ["ln","-s","/usr/bin/nodejs","/usr/bin/node"]
 
 WORKDIR /cabot/
 CMD . /cabot/migrate.sh && /cabot/run.sh
-
-
