@@ -43,8 +43,7 @@ ENV CABOT_FROM_EMAIL noreply@example.com
 # URL of calendar to synchronise rota with
 ENV CALENDAR_ICAL_URL http://www.google.com/calendar/ical/example.ics
 
-ENV DJANGO_SECRET_KEY
-2FL6ORhHwr5eX34pP9mMugnIOd3jzVuT45f7w430Mt5PnEwbcJgma0q8zUXNZ68A
+ENV DJANGO_SECRET_KEY 2FL6ORhHwr5eX34pP9mMugnIOd3jzVuT45f7w430Mt5PnEwbcJgma0q8zUXNZ68A
 
 # Hostname of your Graphite server instance
 ENV GRAPHITE_API http://graphite.example.com/
